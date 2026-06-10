@@ -1,0 +1,146 @@
+/* ===== PAGE ===== */
+
+.fleet-page{
+    padding-top:140px;
+    padding-bottom:100px;
+    background:#ffffff;
+}
+
+.fleet-header{
+    text-align:center;
+    max-width:1100px;
+    margin:0 auto 100px auto;
+    padding:0 20px;
+}
+
+.fleet-header h1{
+    color:#243c6b;
+    font-size:58px;
+    font-weight:600;
+    margin-bottom:30px;
+}
+
+.fleet-header p{
+    color:#4f6599;
+    font-size:20px;
+    line-height:1.8;
+}
+
+.price-btn{
+    display:inline-block;
+    margin-top:40px;
+
+    background:#c99a45;
+    color:white;
+
+    padding:18px 50px;
+    text-decoration:none;
+    letter-spacing:1px;
+    font-size:14px;
+}
+
+/* ===== CONTAINER ===== */
+
+.fleet-container{
+    width:1300px;
+    max-width:92%;
+    margin:auto;
+}
+
+/* ===== YACHT ===== */
+
+.yacht-card{
+    display:flex;
+    gap:50px;
+    margin-bottom:90px;
+    align-items:flex-start;
+}
+
+/* IMAGE */
+
+.yacht-image{
+    flex:1;
+    overflow:hidden;
+}
+
+.yacht-image img{
+    width:100%;
+    display:block;
+    transition:0.5s;
+}
+
+.yacht-image:hover img{
+    transform:scale(1.03);
+}
+
+/* CONTENT */
+
+.yacht-info{
+    flex:1.1;
+}
+
+.yacht-info h2{
+    color:#243c6b;
+    font-size:42px;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.yacht-info h3{
+    color:#4f6599;
+    font-size:15px;
+    letter-spacing:2px;
+    margin-bottom:25px;
+}
+
+.yacht-info p{
+    color:#777;
+    line-height:1.9;
+    margin-bottom:30px;
+}
+
+/* SPECS */
+
+.specs{
+    display:flex;
+    gap:80px;
+}
+
+.specs ul{
+    list-style:none;
+}
+
+.specs li{
+    color:#666;
+    margin-bottom:15px;
+    font-size:15px;
+    line-height:1.7;
+}
+
+.specs li::before{
+    content:"•";
+    color:#243c6b;
+    margin-right:12px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+
+    .yacht-card{
+        flex-direction:column;
+    }
+
+    .specs{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .fleet-header h1{
+        font-size:42px;
+    }
+
+    .yacht-info h2{
+        font-size:32px;
+    }
+}
