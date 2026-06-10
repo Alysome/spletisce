@@ -53,5 +53,27 @@
 
 <script src="script.js"></script>
 
+<div class="music-player">
+
+    <button id="playBtn">▶</button>
+
+    <input type="range" id="seekBar" value="0">
+
+    <span id="time">0:00</span>
+
+    <input
+        type="range"
+        id="volumeBar"
+        min="0"
+        max="1"
+        step="0.1"
+        value="0.5">
+
+    <audio id="bgMusic" loop>
+        <source src="zvok/jblue.mp3" type="audio/mpeg">
+    </audio>
+
+</div>
+
 </body>
 </html>
