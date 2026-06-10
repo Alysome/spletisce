@@ -64,38 +64,35 @@ if (audio && playBtn && seekBar && volumeBar && time) {
 
     audio.volume = 0.5;
 
-    document.addEventListener("click", () => {
-
-        audio.play()
-            .then(() => {
-                playBtn.innerHTML = "❚❚";
-            })
-            .catch(err => console.log(err));
-
-    }, { once: true });
-
-    playBtn.onclick = () => {
+    // klik na play gumb
+    playBtn.addEventListener("click", () => {
 
         if (audio.paused) {
 
-            audio.play();
-            playBtn.innerHTML = "❚❚";
+            audio.play()
+                .then(() => {
+                    playBtn.innerHTML = "❚❚";
+                })
+                .catch(err => console.log(err));
 
         } else {
 
             audio.pause();
             playBtn.innerHTML = "▶";
         }
-    };
+    });
 
-    volumeBar.oninput = () => {
+    // glasnost
+    volumeBar.addEventListener("input", () => {
         audio.volume = volumeBar.value;
-    };
+    });
 
+    // ko se naloži mp3
     audio.addEventListener("loadedmetadata", () => {
         seekBar.max = audio.duration;
     });
 
+    // posodabljanje timeline
     audio.addEventListener("timeupdate", () => {
 
         seekBar.value = audio.currentTime;
@@ -109,7 +106,17 @@ if (audio && playBtn && seekBar && volumeBar && time) {
         time.textContent = `${minutes}:${seconds}`;
     });
 
-    seekBar.oninput = () => {
+    // premikanje po pesmi
+    seekBar.addEventListener("input", () => {
         audio.currentTime = seekBar.value;
-    };
+    });
+
+    // za debug
+    audio.addEventListener("canplaythrough", () => {
+        console.log("MP3 uspešno naložen");
+    });
+
+    audio.addEventListener("error", () => {
+        console.log("Napaka pri nalaganju MP3");
+    });
 }
