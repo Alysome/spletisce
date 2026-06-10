@@ -60,57 +60,56 @@ const seekBar = document.getElementById("seekBar");
 const volumeBar = document.getElementById("volumeBar");
 const time = document.getElementById("time");
 
-audio.volume = 0.5;
+if (audio && playBtn && seekBar && volumeBar && time) {
 
-/* autoplay po prvem kliku na stran */
-document.addEventListener("click", () => {
+    audio.volume = 0.5;
 
-    audio.play();
+    document.addEventListener("click", () => {
 
-    playBtn.innerHTML = "❚❚";
+        audio.play()
+            .then(() => {
+                playBtn.innerHTML = "❚❚";
+            })
+            .catch(err => console.log(err));
 
-}, { once:true });
+    }, { once: true });
 
-playBtn.onclick = () => {
+    playBtn.onclick = () => {
 
-    if(audio.paused){
+        if (audio.paused) {
 
-        audio.play();
-        playBtn.innerHTML = "❚❚";
+            audio.play();
+            playBtn.innerHTML = "❚❚";
 
-    }else{
+        } else {
 
-        audio.pause();
-        playBtn.innerHTML = "▶";
-    }
-};
+            audio.pause();
+            playBtn.innerHTML = "▶";
+        }
+    };
 
-volumeBar.oninput = () => {
-    audio.volume = volumeBar.value;
-};
+    volumeBar.oninput = () => {
+        audio.volume = volumeBar.value;
+    };
 
-audio.addEventListener("loadedmetadata", () => {
+    audio.addEventListener("loadedmetadata", () => {
+        seekBar.max = audio.duration;
+    });
 
-    seekBar.max = audio.duration;
-});
+    audio.addEventListener("timeupdate", () => {
 
-audio.addEventListener("timeupdate", () => {
+        seekBar.value = audio.currentTime;
 
-    seekBar.value = audio.currentTime;
+        const minutes = Math.floor(audio.currentTime / 60);
 
-    const minutes =
-    Math.floor(audio.currentTime / 60);
+        const seconds = Math.floor(audio.currentTime % 60)
+            .toString()
+            .padStart(2, "0");
 
-    const seconds =
-    Math.floor(audio.currentTime % 60)
-    .toString()
-    .padStart(2,"0");
+        time.textContent = `${minutes}:${seconds}`;
+    });
 
-    time.textContent =
-    `${minutes}:${seconds}`;
-});
-
-seekBar.oninput = () => {
-
-    audio.currentTime = seekBar.value;
-};
+    seekBar.oninput = () => {
+        audio.currentTime = seekBar.value;
+    };
+}
